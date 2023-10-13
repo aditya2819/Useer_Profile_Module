@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Information Form</title>
+  </head>
+  <body>
+    <h1>User Information Form</h1>
+    <form action="/user_profile" method="POST">
+
+      <h2>Identity</h2><br /><br />
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required /><br /><br />
+
+      <label for="contact">Contact:</label>
+      <input type="tel" id="contact" name="contact" required /><br /><br />
+
+      <label for="gender">Gender:</label>
+      <input type="radio" id="male" name="gender" value="male" /> Male
+      <input type="radio" id="female" name="gender" value="female" /> Female<br /><br />
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required /><br /><br />
+
+      <label for="isactive">Is Active:</label>
+      <select id="isactive" name="isactive" required>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+        <br /><br />
+
+      <label for="marital_status">Marital Status:</label>
+      <select id="marital_status" name="marital_status" required>
+        <option value="single">Single</option>
+        <option value="married">Married</option>
+        <option value="divorced">Divorced</option>
+        <option value="widowed">Widowed</option>
+      </select>
+        <br /><br />
+
+      <label for="country">Country:</label>
+      <select id="country" name="country">
+        {% for country in country_names %}
+            <option value="{{ country }}">{{ country }}</option>
+        {% endfor %}
+      </select>
+      <br><br>
+
+      <label for="state">State:</label>
+      <select id="state" name="state">
+        {% for state in state_names %}
+            <option value="{{ state }}">{{ state }}</option>
+        {% endfor %}
+      </select>
+      <br><br>
+
+      <label for="city">City:</label>
+      <select id="city" name="city">
+        {% for city in city_names %}
+            <option value="{{ city }}">{{ city }}</option>
+        {% endfor %}
+      </select>
+      <br><br>
+
+      <h2>Education</h2><br /><br />
+      <label for="degree">Degree:</label>
+      <select id="degree" name="degree">
+            {% for degree in degree_names %}
+                <option value="{{ degree }}">{{ degree }}</option>
+            {% endfor %}
+      </select>
+
+      <br><br>
+      <label for="percentage">Percentage:</label>
+      <input type="number" min="1" max="100" id="percentage" name="percentage" /><br /><br />
+
+      <label for="yop">Year of Passing:</label>
+      <input type="number" id="yop" name="yop" /><br /><br />
+
+      <label for="instname">Institution Name:</label>
+      <input type="text" id="instname" name="instname" /><br /><br />
+
+      <h2>Specialization</h2><br /><br />
+      <label for="specialization">Specialization:</label>
+      <select id="specialization" name="specialization">
+        {% for specialization in specialization_names %}
+            <option value="{{ specialization }}">{{ specialization }}</option>
+        {% endfor %}
+      </select>
+
+      <br><br>
+      <label for="certification">Certification:</label>
+      <input type="text" id="certification" name="certification" /><br /><br />
+
+      <label for="cert_issue_date">Certification Issue Date:</label>
+      <input type="date" id="cert_issue_date" name="cert_issue_date" /><br /><br />
+
+      <label for="descriptionsp">Description of Specialization:</label>
+      <textarea id="descriptionsp" name="descriptionsp" rows="4" cols="50"></textarea><br /><br />
+
+      <h2>Skill</h2><br /><br />
+      <label for="skill">Skill:</label>
+      <select id="skill" name="skill">
+        {% for skill in skill_names %}
+            <option value="{{ skill }}">{{ skill }}</option>
+        {% endfor %}
+      </select>
+
+      <br><br>
+      <label for="descriptionsk">Description of Skill:</label>
+      <textarea id="descriptionsk" name="descriptionsk" rows="4" cols="50"></textarea><br /><br />
+
+      <h2>Job Experience</h2><br /><br />
+      <label for="start_date">Start Date:</label>
+      <input type="date" id="start_date" name="start_date" required /><br /><br />
+
+      <label for="company_name">Company Name:</label>
+      <input type="text" id="company_name" name="company_name" required /><br /><br />
+
+      <label for="post">Post:</label>
+      <input type="text" id="post" name="post" required /><br /><br />
+
+      <label for="salary">Salary:</label>
+      <input type="number" min="0" id="salary" name="salary" /><br /><br />
+
+      <label for="responsibility">Responsibility:</label>
+      <textarea id="responsibility" name="responsibility" rows="4" cols="50"></textarea><br /><br />
+
+      <label for="end_date">End Date:</label>
+      <input type="date" id="end_date" name="end_date" /><br /><br />
+
+      <label for="total_time">Total Time in Years:</label>
+      <input type="number" min="0" id="total_time" name="total_time" /><br /><br />
+
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

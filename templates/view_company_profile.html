@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Company Profile</title>
+  </head>
+  <body>
+    <h1>Company Profile</h1>
+
+    <h2>Company Information</h2>
+    <p>Company_ID: {{ company.company_id }}</p>
+    <p>Name: {{ company.name }}</p>
+    <p>Address: {{ company.address }}</p>
+    <p>Government Issued ID: {{ company.govern_issued_id }}</p>
+    <p>Contact: {{ company.contact }}</p>
+    <p>Number of Employees: {{ company.no_of_emp }}</p>
+    <p>Established Years: {{ company.established_years }}</p>
+    <p>About: {{ company.about }}</p>
+
+    <form action="/edit_company_profile" method="POST">
+      <h2>Edit Profile</h2>
+      <label for="edit_company_id">Company ID:</label>
+      <br /><br />
+      <input type="text" id="edit_company_id" name="edit_company_id" required />
+      <br /><br />
+      <input type="submit" value="Edit Profile" />
+    </form>
+
+    <!-- Form for Deleting Company Profile -->
+    <form action="/delete_company_profile" method="POST">
+      <h2>Delete Profile</h2>
+      <label for="delete_company_id">Company ID:</label>
+      <br /><br />
+      <input
+        type="text"
+        id="delete_company_id"
+        name="delete_company_id"
+        required
+      />
+      <br /><br />
+      <input type="submit" value="Delete Profile" />
+    </form>
+  </body>
+</html>

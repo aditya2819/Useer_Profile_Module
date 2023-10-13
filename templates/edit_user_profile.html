@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Information Form</title>
+</head>
+<body>
+    <h1>User Information Form</h1>
+    <form action="/edit_user_profile" method="POST">
+
+      <h2>Identity</h2><br /><br />
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required value="{{ user.name }}" /><br /><br />
+
+      <label for="contact">Contact:</label>
+      <input type="tel" id="contact" name="contact" required value="{{ user.contact }}" /><br /><br />
+
+      <label for="gender">Gender:</label>
+      <input type="radio" id="male" name="gender" value="male" {{ 'checked' if user.gender == 'male' else '' }} /> Male
+      <input type="radio" id="female" name="gender" value="female" {{ 'checked' if user.gender == 'female' else '' }} /> Female<br /><br />
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required value="{{ user.birth_date }}" /><br /><br />
+
+      <label for="isactive">Is Active:</label>
+      <select id="isactive" name="isactive" required>
+        <option value="Yes" {{ 'selected' if user.is_active == 'Yes' else '' }}>Yes</option>
+        <option value="No" {{ 'selected' if user.is_active == 'No' else '' }}>No</option>
+      </select>
+      <br /><br />
+
+      <label for="marital_status">Marital Status:</label>
+      <select id="marital_status" name="marital_status" required>
+        <option value="single" {{ 'selected' if user.marital_status == 'single' else '' }}>Single</option>
+        <option value="married" {{ 'selected' if user.marital_status == 'married' else '' }}>Married</option>
+        <option value="divorced" {{ 'selected' if user.marital_status == 'divorced' else '' }}>Divorced</option>
+        <option value="widowed" {{ 'selected' if user.marital_status == 'widowed' else '' }}>Widowed</option>
+      </select>
+      <br /><br />
+      <label for="country">Country:</label>
+      <select id="country" name="country">
+          {% for country in country_names %}
+              <option value="{{ country }}" {{ 'selected' if country == user.country_id }}>{{ country }}</option>
+          {% endfor %}
+      </select>
+      <br /><br>
+      
+      <label for="state">State:</label>
+      <select id="state" name="state">
+          {% for state in state_names %}
+              <option value="{{ state }}" {{ 'selected' if state == user.state_id }}>{{ state }}</option>
+          {% endfor %}
+      </select>
+      <br /><br>
+      
+      <label for="city">City:</label>
+      <select id="city" name="city">
+          {% for city in city_names %}
+              <option value="{{ city }}" {{ 'selected' if city == user.city_id }}>{{ city }}</option>
+          {% endfor %}
+      </select>
+      <br /><br>
+      
+      <h2>Education</h2><br /><br />
+      <label for="degree">Degree:</label>
+      <select id="degree" name="degree">
+          {% for degree in degree_names %}
+              <option value="{{ degree }}" {{ 'selected' if degree == user.degree }}>{{ degree }}</option>
+          {% endfor %}
+      </select>
+      
+      <br /><br>
+      <label for="percentage">Percentage:</label>
+      <input type="number" min="1" max="100" id="percentage" name="percentage" value="{{ user.percentage }}" /><br /><br />
+      
+      <label for="yop">Year of Passing:</label>
+      <input type="number" id="yop" name="yop" value="{{ user.year_of_passing }}" /><br /><br />
+      
+      <label for="instname">Institution Name:</label>
+      <input type="text" id="instname" name="instname" value="{{ user.institution_name }}" /><br /><br />
+      
+      <h2>Specialization</h2><br /><br />
+      <label for="specialization">Specialization:</label>
+      <select id="specialization" name="specialization">
+          {% for specialization in specialization_names %}
+              <option value="{{ specialization }}" {{ 'selected' if specialization == user.specialization }}>{{ specialization }}</option>
+          {% endfor %}
+      </select>
+      
+      <br /><br>
+      <label for="certification">Certification:</label>
+      <input type="text" id="certification" name="certification" value="{{ user.certification }}" /><br /><br />
+      
+      <label for="cert_issue_date">Certification Issue Date:</label>
+      <input type="date" id="cert_issue_date" name="cert_issue_date" value="{{ user.certification_issue_date }}" /><br /><br />
+      
+      <label for="descriptionsp">Description of Specialization:</label>
+      <textarea id="descriptionsp" name="descriptionsp" rows="4" cols="50">{{ user.specialization_description }}</textarea><br /><br />
+      
+      <h2>Skill</h2><br /><br />
+      <label for="skill">Skill:</label>
+      <select id="skill" name="skill">
+          {% for skill in skill_names %}
+              <option value="{{ skill }}" {{ 'selected' if skill == user.skill }}>{{ skill }}</option>
+          {% endfor %}
+      </select>
+      
+      <br /><br>
+      <label for="descriptionsk">Description of Skill:</label>
+      <textarea id="descriptionsk" name="descriptionsk" rows="4" cols="50">{{ user.skill_description }}</textarea><br /><br />
+      
+      <h2>Job Experience</h2><br /><br />
+      <label for="start_date">Start Date:</label>
+      <input type="date" id="start_date" name="start_date" required /><br /><br />
+      
+      <label for="company_name">Company Name:</label>
+      <input type="text" id="company_name" name="company_name" required /><br /><br />
+      
+      <label for="post">Post:</label>
+      <input type="text" id="post" name="post" required /><br /><br />
+      
+      <label for="salary">Salary:</label>
+      <input type="number" min="0" id="salary" name="salary" /><br /><br />
+      
+      <label for="responsibility">Responsibility:</label>
+      <textarea id="responsibility" name="responsibility" rows="4" cols="50"></textarea><br /><br />
+      
+      <label for="end_date">End Date:</label>
+      <input type="date" id="end_date" name="end_date" /><br /><br />
+      
+      <label for="total_time">Total Time in Years:</label>
+      <input type="number" min="0" id="total_time" name="total_time" /><br /><br />
+
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

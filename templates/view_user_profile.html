@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>User Profile</h1>
+    
+    <h2>User Information</h2>
+    <p>User_Id: {{ user.user_id }}</p>
+    <p>Name: {{ user.name }}</p>
+    <p>Contact: {{ user.contact }}</p>
+    <p>Gender: {{ user.gender }}</p>
+    <p>Birth Date: {{ user.birth_date }}</p>
+
+    <h2>Skills</h2>
+    <ul>
+        {% for skill in skills %}
+        <li>{{ skill.description }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Specializations</h2>
+    <ul>
+        {% for specialization in specializations %}
+        <li>{{ specialization.description }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Job Experiences</h2>
+    <ul>
+        {% for experience in experiences %}
+        <li>
+            Company: {{ experience.company_name }}<br>
+            Post: {{ experience.post }}<br>
+            Salary: {{ experience.salary }}<br>
+            Responsibility: {{ experience.responsibility }}<br>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Form for Editing Profile -->
+    <form action="/edit_user_profile" method="POST">
+        <h2>Edit Profile</h2>
+        <label for="edit_user_id">Enter User ID below:</label>
+        <br><br>
+        <input type="text" id="edit_user_id" name="edit_user_id" required>
+        <br><br>
+        <input type="submit" value="Edit Profile">
+    </form>
+
+    <!-- Form for Deleting Profile -->
+    <form action="/delete_user_profile" method="POST">
+        <h2>Delete Profile</h2>
+        <label for="delete_user_id">Enter User ID below:</label>
+        <br><br>
+        <input type="text" id="delete_user_id" name="delete_user_id" required>
+        <br><br>    
+        <input type="submit" value="Delete Profile">
+    </form>
+</body>
+</html>

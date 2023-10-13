@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Type Selection</title>
+</head>
+<body>
+    <h1>User Type Selection</h1>
+    <form action="/" method="POST">
+        <label for="user_type">Are you a user or a company?</label>
+        <br>
+        <input type="radio" id="user" name="user_type" value="user">
+        <label for="user">User</label>
+        <br>
+        <input type="radio" id="company" name="user_type" value="company">
+        <label for="company">Company</label>
+        <br><br>
+
+        <div id="user_input" style="display: none;">
+            <label for="existing_user">Are you an existing user?</label>
+            <br>
+            <input type="radio" id="existing_user_yes" name="existing_user" value="yes">
+            <label for="existing_user_yes">Yes</label>
+            <br>
+            <input type="radio" id="existing_user_no" name="existing_user" value="no">
+            <label for="existing_user_no">No</label>
+            <br><br>
+            <div id="user_id_input" style="display: none;">
+                <label for="user_id">Enter your User ID:</label>
+                <br>
+                <input type="text" id="user_id" name="user_id">
+                <br><br>
+            </div>
+        </div>
+
+        <div id="company_input" style="display: none;">
+            <label for="existing_company">Are you an existing company?</label>
+            <br>
+            <input type="radio" id="existing_company_yes" name="existing_company" value="yes">
+            <label for="existing_company_yes">Yes</label>
+            <br>
+            <input type="radio" id="existing_company_no" name="existing_company" value="no">
+            <label for="existing_company_no">No</label>
+            <br><br>
+            <div id="company_id_input" style="display: none;">
+                <label for="company_id">Enter your Company ID:</label>
+                <br>
+                <input type="text" id="company_id" name="company_id">
+                <br><br>
+            </div>
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        const userTypeRadio = document.getElementsByName("user_type");
+        const userInputDiv = document.getElementById("user_input");
+        const companyInputDiv = document.getElementById("company_input");
+        const userIdInputDiv = document.getElementById("user_id_input");
+        const companyIdInputDiv = document.getElementById("company_id_input");
+
+        for (let i = 0; i < userTypeRadio.length; i++) {
+            userTypeRadio[i].addEventListener("click", function() {
+                if (userTypeRadio[i].value === "user") {
+                    userInputDiv.style.display = "block";
+                    companyInputDiv.style.display = "none";
+                } else if (userTypeRadio[i].value === "company") {
+                    userInputDiv.style.display = "none";
+                    companyInputDiv.style.display = "block";
+                }
+            });
+        }
+
+        const existingUserRadio = document.getElementsByName("existing_user");
+        const existingCompanyRadio = document.getElementsByName("existing_company");
+
+        for (let i = 0; i < existingUserRadio.length; i++) {
+            existingUserRadio[i].addEventListener("click", function() {
+                if (existingUserRadio[i].value === "yes") {
+                    userIdInputDiv.style.display = "block";
+                } else {
+                    userIdInputDiv.style.display = "none";
+                }
+            });
+        }
+
+        for (let i = 0; i < existingCompanyRadio.length; i++) {
+            existingCompanyRadio[i].addEventListener("click", function() {
+                if (existingCompanyRadio[i].value === "yes") {
+                    companyIdInputDiv.style.display = "block";
+                } else {
+                    companyIdInputDiv.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
