@@ -25,5 +25,6 @@ Restore database from "job_portal.tar" file provided using pgAdmin or PSQL
 Step 5
 Run the application using terminal using command python app.py
 
-Something about project logic is present in app.py the classes are created in models.py and some functions are present in functions.py
+Something about project:
+Logic is present in app.py the classes are created in models.py and some functions are present in functions.py
 The edit functionality is yet to be completed
