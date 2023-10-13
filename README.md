@@ -20,7 +20,7 @@ in the following line edit the "username","password","port","databasename" as pe
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://username:password@localhost:port/databasename"
 
 Step 4
-Restore database from "job_portal.tar" file provided
+Restore database from "job_portal.tar" file provided using pgAdmin or PSQL
 
 Step 5
 Run the application using terminal using command python app.py
