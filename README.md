@@ -1,4 +1,4 @@
-# Useer_Profile_Module
+# User_Profile_Module
 Implemented a User Profile System for a Job Portal Project using Flask and PostGresSQL
 Here are the steps to run the Project
 Step 1
