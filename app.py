@@ -37,24 +37,30 @@ def checkuser():
 
                 return render_template('user_profile.html', degree_names=degree_names, specialization_names=specialization_names, skill_names=skill_names, city_names=city_names, state_names=state_names, country_names=country_names)
             else:
-                user_id = request.form.get("user_id_input")
-                ifexist_user_id = User.query.get(user_id)
-
-                if ifexist_user_id:
-                    return  redirect(url_for('view_user_profile',user_id=user_id))
+                user_id = request.form.get("user_id")
+                if user_id is not None:
+                    user = User.query.filter_by(user_id=user_id).first()
+                    usrid = user.user_id
+                    if usrid:
+                        return  redirect(url_for('view_user_profile',user_id=user_id))
+                    else:
+                        return jsonify({'error': 'User_Id not found'}), 404
                 else:
-                    return jsonify({'error': 'User_Id not found'}), 404
+                    return jsonify({'error': 'User_ID not provided'})
         else:
             if existcompany == "no":
                 return render_template('company_profile.html')
             else:
-                company_id = request.form.get("company_id_input")
-                ifexist_company_id = Company.query.get(company_id)
-
-                if ifexist_company_id:
-                    return  redirect(url_for('view_company_profile',company_id=company_id))
+                company_id = request.form.get("company_id")
+                if company_id is not None:
+                    company = Company.query.filter_by(company_id=company_id).first()
+                    compid = company.company_id
+                    if compid:
+                        return  redirect(url_for('view_company_profile',company_id=company_id))
+                    else:
+                        return jsonify({'error': 'Company_Id not found'}), 404
                 else:
-                    return jsonify({'error': 'Company_Id not found'}), 404
+                    return jsonify({'error': 'Company_ID not provided'})
     return render_template("usercomp.html")
     
 
@@ -120,7 +126,7 @@ def company_profile():
         est = request.form.get("established_years")
         abt = request.form.get("about")
 
-        compid = 200
+        compid = 213
 
         company = Company(company_id=compid+1, name=nm, address=addr, govern_issued_id=govid, contact=con, no_of_emp=noemp, established_years=est, about=abt)
         with db.session.begin():
@@ -145,40 +151,8 @@ def delete_user_profile():
             db.session.commit()
     return render_template("byebye.html")
 
-@app.route('/edit_company_profile', methods = ["GET", "POST"])
-def edit_company():
-    company_id = request.form.get("edit_company_id")
-    company = Company.query.get(company_id)
-
-    if request.method == 'POST':
-        # Get form data
-        name = request.form.get("name")
-        address = request.form.get("address")
-        govern_issued_id = request.form.get("govern_issued_id")
-        contact = request.form.get("contact")
-        no_of_emp = request.form.get("no_of_emp")
-        established_years = request.form.get("established_years")
-        about = request.form.get("about")
-
-        # Update company data
-        company.name = name
-        company.address = address
-        company.govern_issued_id = govern_issued_id
-        company.contact = contact
-        company.no_of_emp = no_of_emp
-        company.established_years = established_years
-        company.about = about
-
-        # Commit the changes to the database
-        db.session.commit()
-
-        return redirect(url_for('view_company_profile', company_id=company_id,
-                            name=name, address=address, govern_issued_id=govern_issued_id,
-                            contact=contact, no_of_emp=no_of_emp, established_years=established_years,
-                            about=about))
-
-    return render_template('edit_company_profile.html', company=company)
-
+# @app.route('/edit_company_profile', methods = ["GET", "POST"])
+# def edit_company_profile():
 
 
 @app.route('/delete_company_profile', methods = ["GET", "POST"])
